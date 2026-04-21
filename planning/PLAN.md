@@ -369,6 +369,52 @@ The frontend is a single-page application with a dense, terminal-inspired layout
 - All API calls go to the same origin (`/api/*`) — no CORS configuration needed
 - Tailwind CSS for styling with a custom dark theme
 
+### Frontend Buildout Plan (frontend-design)
+
+Use the `frontend-design` skill as the implementation quality bar: intentional visual direction, polished motion, and non-generic terminal aesthetics. Build in small, validated increments.
+
+#### Phase 1 — App Shell and Data Plumbing
+
+- Create a single-page app shell with fixed regions: header, watchlist, chart area, portfolio area, trade bar, chat panel.
+- Implement typed API client modules for REST and SSE (`EventSource`) with clear data contracts.
+- Add global UI state for: selected ticker, latest prices map, connection status, loading/error states.
+- Deliverable: shell loads with live streamed watchlist prices and connected/reconnecting/disconnected indicator.
+
+#### Phase 2 — Market Surfaces
+
+- Implement watchlist grid with: ticker, price, day %, direction flash, and sparkline accumulation since page load.
+- Implement main chart bound to selected ticker with smooth updates and sensible point capping.
+- Add empty/loading states that preserve layout stability (no jarring jumps).
+- Deliverable: user can watch market movement and inspect any selected ticker in real time.
+
+#### Phase 3 — Trading and Portfolio Loop
+
+- Implement trade bar (ticker + quantity + buy/sell) with optimistic UX and backend-validated results.
+- Implement positions table and portfolio summary cards (cash, total value, unrealized P&L).
+- Implement portfolio heatmap and P&L history chart from portfolio endpoints.
+- Deliverable: manual trade actions immediately reflect in positions, portfolio visuals, and totals.
+
+#### Phase 4 — AI Copilot Experience
+
+- Implement chat panel UX: message list, input, loading state, and structured action confirmations.
+- Render assistant-side executed actions clearly (trade executed / watchlist add-remove results).
+- Ensure chat errors are non-blocking and do not regress trading/watchlist flows.
+- Deliverable: AI workflow feels integrated with trading state, not bolted on.
+
+#### Phase 5 — Polish and Demo Readiness
+
+- Apply a distinctive terminal-style visual system (typography, spacing rhythm, contrast hierarchy, restrained accent use).
+- Add purposeful motion: price-change flashes, panel transitions, chart updates, connection-state cues.
+- Validate responsiveness for desktop-first + tablet-safe layouts.
+- Deliverable: cohesive, presentation-ready interface with clear information hierarchy.
+
+#### Frontend Definition of Done
+
+- All required surfaces from Section 10 are implemented and wired to real backend APIs.
+- SSE reconnection behavior is visible and resilient (status indicator + graceful data continuity).
+- Critical user flows pass: stream prices, add/remove watchlist ticker, buy/sell, chat-assisted action.
+- Frontend unit tests cover core rendering and interaction paths; E2E includes end-to-end happy path.
+
 ---
 
 ## 11. Docker & Deployment
