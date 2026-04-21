@@ -248,3 +248,13 @@
 - If requested, add a command appendix for macOS/Linux/Windows startup and stop flows.
 - If requested, add a timed 10-minute spoken script variant with exact wording.
 - If requested, add a "judge/investor" version emphasizing outcomes over technical details.
+
+## Build Progress Log
+
+- Phase 1 complete: frontend scaffold, typed SSE contracts, connection status handling, and initial watchlist rendering with tests.
+- Phase 2 in progress: watchlist now supports ticker selection, selected-ticker detail panel, directional change display, and sparkline history accumulation for each ticker.
+- Trading/portfolio loop added to frontend demo build: trade bar now supports buy/sell actions with local cash, positions table, and total portfolio value updates.
+- AI chat panel slice added: message history, input/send flow, loading state, and mocked assistant action summaries for demo storytelling.
+- UI polish pass completed for current milestone: shared panel visual style, header metrics strip (portfolio value/cash/P&L), and keyboard submit shortcuts for trade and chat flows.
+- API-first wiring added with graceful fallback: portfolio/watchlist bootstrap, trade execution, and chat send now attempt backend endpoints first, then revert to local demo behavior when unavailable.
+- Testing status: frontend component tests are passing after each increment; backend SSE reliability tests remain in place.
